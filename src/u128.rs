@@ -30,6 +30,10 @@ impl PgU128 {
             inner: BigUint::from(num),
         }
     }
+
+    pub fn as_biguint(&self) -> &BigUint {
+        &self.inner
+    }
 }
 
 impl Add for PgU128 {
@@ -70,6 +74,12 @@ impl TryFrom<BigUint> for PgU128 {
             return Err(crate::Error::Overflow);
         }
         Ok(Self { inner: value })
+    }
+}
+
+impl From<PgU128> for BigUint {
+    fn from(value: PgU128) -> Self {
+        value.inner
     }
 }
 
