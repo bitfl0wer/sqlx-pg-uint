@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use bigdecimal::num_bigint::BigUint;
 use sqlx_pg_uint_macros::UIntWrapper;
 
 use crate::UIntType;

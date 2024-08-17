@@ -1,5 +1,5 @@
 use sqlx_pg_uint_macros::UIntWrapper;
-use num_bigint::BigUint;
+use bigdecimal::num_bigint::BigUint;
 
 use crate::UIntType;
 
