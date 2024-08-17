@@ -21,15 +21,15 @@ mod pg_u128_tests {
         let pg_u128 = PgU128 {
             inner: BigUint::from(12678671u128),
         };
-        //assert_eq!(pg_u128.to_uint(), 12678671u128);
+        assert_eq!(pg_u128.to_uint(), 12678671u128);
         let pg_u128 = PgU128 {
             inner: BigUint::from(0u128),
         };
-        //assert_eq!(pg_u128.to_uint(), 0u128);
+        assert_eq!(pg_u128.to_uint(), 0u128);
         let pg_u128 = PgU128 {
             inner: BigUint::from(u128::MAX),
         };
-        //assert_eq!(pg_u128.to_uint(), u128::MAX);
+        assert_eq!(pg_u128.to_uint(), u128::MAX);
     }
 
     #[test]
@@ -40,14 +40,14 @@ mod pg_u128_tests {
         let pg_u1282 = PgU128 {
             inner: BigUint::from(12678671u128),
         };
-        //assert_eq!((pg_u128 + pg_u1282).to_uint(), 25357342u128);
+        assert_eq!((pg_u128 + pg_u1282).to_uint(), 25357342u128);
         let pg_u128 = PgU128 {
             inner: BigUint::from(0u128),
         };
         let pg_u1282 = PgU128 {
             inner: BigUint::from(0u128),
         };
-        //assert_eq!((pg_u128 + pg_u1282).to_uint(), 0u128);
+        assert_eq!((pg_u128 + pg_u1282).to_uint(), 0u128);
     }
 
     #[test]
