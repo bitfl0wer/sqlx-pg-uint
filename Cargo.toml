@@ -1,2 +1,3 @@
 [workspace]
 members = ["sqlx-pg-uint", "sqlx-pg-uint-macros"]
+resolver = "2"
