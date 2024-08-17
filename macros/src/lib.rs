@@ -38,11 +38,33 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
+        impl std::ops::Div for #name {
+            type Output = Self;
+
+            fn div(self, rhs: Self) -> Self::Output {
+                Self::new(self.to_uint() / rhs.to_uint())
+            }
+        }
+
+        impl std::ops::Rem for #name {
+            type Output = Self;
+
+            fn rem(self, rhs: Self) -> Self::Output {
+                Self::new(self.to_uint() % rhs.to_uint())
+            }
+        }
+
         impl From<<#name as UIntType>::Uint> for #name {
             fn from(value: <#name as UIntType>::Uint) -> Self {
                 Self {
                     inner: BigUint::from(value),
                 }
+            }
+        }
+
+        impl From<#name> for <#name as UIntType>::Uint {
+            fn from(value: #name) -> Self {
+                value.to_uint()
             }
         }
 
@@ -64,6 +86,19 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
 
             pub fn as_biguint(&self) -> &BigUint {
                 &self.inner
+            }
+        }
+
+        impl TryFrom<BigUint> for #name {
+            type Error = crate::Error;
+
+            fn try_from(value: BigUint) -> Result<Self, Self::Error> {
+                if value.bits() > std::mem::size_of::<<#name as UIntType>::Uint>() as u64 {
+                    return Err(crate::Error::Overflow);
+                }
+                Ok(Self {
+                    inner: value,
+                })
             }
         }
 
