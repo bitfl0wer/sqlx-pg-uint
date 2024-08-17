@@ -16,3 +16,7 @@ pub enum Error {
     #[error("Value is too large to be made into target type")]
     Overflow,
 }
+
+pub trait UIntType {
+    type Uint;
+}
