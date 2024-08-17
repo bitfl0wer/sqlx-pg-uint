@@ -1,13 +1,13 @@
-use macros::UIntWrapper;
+use sqlx_pg_uint_macros::UIntWrapper;
 use num_bigint::BigUint;
 
 use crate::UIntType;
 
-impl UIntType for PgU8 {
-    type Uint = u8;
+impl UIntType for PgU64 {
+    type Uint = u64;
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
-pub struct PgU8 {
+pub struct PgU64 {
     inner: BigUint,
 }

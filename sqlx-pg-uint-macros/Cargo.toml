@@ -1,5 +1,5 @@
 [package]
-name = "macros"
+name = "sqlx-pg-uint-macros"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
@@ -9,5 +9,5 @@ authors = ["bitfl0wer"]
 proc-macro = true
 
 [dependencies]
-quote = "1.0.36"
-syn = { version = "2.0.74", features = ["full"] }
+quote = "1.0"
+syn = { version = "2.0", features = ["full"] }

@@ -1,15 +1,2 @@
-[package]
-name = "sqlx-pg-uint"
-version = "0.0.0"
-edition = "2021"
-license = "MIT"
-authors = ["bitfl0wer"]
-
-[dependencies]
-num-bigint = "0.4.6"
-sqlx = { version = "0.8.0", default-features = false, features = [
-    "postgres",
-    "bigdecimal",
-] }
-thiserror = "1.0.63"
-macros = { path = "./macros" }
+[workspace]
+members = ["sqlx-pg-uint", "sqlx-pg-uint-macros"]

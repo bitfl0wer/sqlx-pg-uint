@@ -1,0 +1,15 @@
+[package]
+name = "sqlx-pg-uint"
+version = "0.0.0"
+edition = "2021"
+license = "MIT"
+authors = ["bitfl0wer"]
+
+[dependencies]
+num-bigint = "0.4"
+sqlx = { version = "0.8", default-features = false, features = [
+    "postgres",
+    "bigdecimal",
+] }
+thiserror = "1.0"
+sqlx-pg-uint-macros = { path = "../sqlx-pg-uint-macros" }
