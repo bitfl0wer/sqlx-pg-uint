@@ -7,7 +7,6 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let name = &input.ident;
 
-    // Generate the code assuming `UIntType` trait with an associated type `Uint`
     let gen = quote! {
         impl std::fmt::Display for #name {
             fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -68,16 +67,6 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
-        impl TryFrom<BigUint> for #name {
-            type Error = crate::Error;
-
-            fn try_from(value: BigUint) -> Result<Self, Self::Error> {
-                if value.bits() > std::mem::size_of::<<#name as UIntType>::Uint>() * 8 {
-                    return Err(crate::Error::Overflow);
-                }
-                Ok(Self { inner: value })
-            }
-        }
 
         impl From<#name> for BigUint {
             fn from(value: #name) -> Self {
