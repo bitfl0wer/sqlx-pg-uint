@@ -4,6 +4,7 @@ version = "0.0.0"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
+description = "SQLx compatible types to convert between Rust unsigned integers and the PostgreSQL `NUMERIC`/`DECIMAL` type seamlessly."
 
 [dependencies]
 num-bigint = "0.4"
