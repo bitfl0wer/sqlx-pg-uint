@@ -57,7 +57,7 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
         impl From<<#name as UIntType>::Uint> for #name {
             fn from(value: <#name as UIntType>::Uint) -> Self {
                 Self {
-                    inner: BigUint::from(value),
+                    inner: BigDecimal::from(value),
                 }
             }
         }
@@ -70,40 +70,38 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
 
         impl #name {
             pub fn to_uint(&self) -> <#name as UIntType>::Uint {
-                let bigint_bytes_be = self.inner.to_bytes_be();
-                let mut bytes = [0u8; std::mem::size_of::<<#name as UIntType>::Uint>()];
-                for (i, byte) in bigint_bytes_be.iter().enumerate() {
-                    bytes[std::mem::size_of::<<#name as UIntType>::Uint>() - bigint_bytes_be.len() + i] = *byte;
-                }
-                <#name as UIntType>::Uint::from_be_bytes(bytes)
+                let stringed_num = self.inner.to_string();
+                stringed_num.parse().unwrap()
             }
 
             pub fn new(num: <#name as UIntType>::Uint) -> Self {
                 Self {
-                    inner: BigUint::from(num),
+                    inner: BigDecimal::from(num),
                 }
             }
 
-            pub fn as_biguint(&self) -> &BigUint {
+            pub fn as_big_decimal(&self) -> &BigDecimal {
                 &self.inner
             }
         }
 
-        impl TryFrom<BigUint> for #name {
+        impl TryFrom<BigDecimal> for #name {
             type Error = crate::Error;
 
-            fn try_from(value: BigUint) -> Result<Self, Self::Error> {
-                if value.bits() > std::mem::size_of::<<#name as UIntType>::Uint>() as u64 {
-                    return Err(crate::Error::Overflow);
+            fn try_from(value: BigDecimal) -> Result<Self, Self::Error> {
+                let value_ref = &value;
+                if !value_ref.is_integer() {
+                    return Err(crate::Error::Fractional(value));
                 }
-                Ok(Self {
-                    inner: value,
-                })
+                if value_ref.to_string().parse::<u128>().is_err() {
+                    return Err(crate::Error::InvalidValue(value));
+                }
+                Ok(Self { inner: value })
             }
         }
 
 
-        impl From<#name> for BigUint {
+        impl From<#name> for BigDecimal {
             fn from(value: #name) -> Self {
                 value.inner
             }
