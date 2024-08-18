@@ -3,6 +3,12 @@ use quote::quote;
 use syn::{parse_macro_input, DeriveInput};
 
 #[proc_macro_derive(UIntWrapper)]
+/// Derive macro for unsigned integer types.
+///
+/// Derives all the mathematical operations for the unsigned integer type, as well as `Display`,
+/// `From` and `TryFrom` implementations for/to `BigDecimal`, a `to_uint` method to convert the
+/// `PgUint` type to the underlying integer type and a `new` method to create a new `PgUint` type
+/// from the underlying integer type.
 pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let name = &input.ident;
