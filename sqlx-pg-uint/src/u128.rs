@@ -3,6 +3,8 @@ use sqlx_pg_uint_macros::UIntWrapper;
 
 use crate::UIntType;
 
+impl private::Sealed for PgU128 {}
+
 impl UIntType for PgU128 {
     type Uint = u128;
 }

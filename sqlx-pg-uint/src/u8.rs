@@ -7,6 +7,8 @@ impl UIntType for PgU8 {
     type Uint = u8;
 }
 
+impl private::Sealed for PgU8 {}
+
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
 /// PostgreSQL-compatible unsigned 8-bit integer
 pub struct PgU8 {

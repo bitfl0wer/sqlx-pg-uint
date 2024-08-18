@@ -7,6 +7,8 @@ impl UIntType for PgU16 {
     type Uint = u16;
 }
 
+impl private::Sealed for PgU16 {}
+
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
 /// PostgreSQL-compatible unsigned 16-bit integer
 pub struct PgU16 {

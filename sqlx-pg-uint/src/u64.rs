@@ -6,6 +6,7 @@ use crate::UIntType;
 impl UIntType for PgU64 {
     type Uint = u64;
 }
+impl private::Sealed for PgU64 {}
 
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
 /// PostgreSQL-compatible unsigned 64-bit integer

@@ -42,11 +42,15 @@ pub enum Error {
     Fractional(BigDecimal),
 }
 
+mod private {
+    pub trait Sealed {}
+}
+
 /// Helper trait to define the underlying integer type for a given `PgUint` type. Used in the
 /// `sqlx-pg-uint-macros` crate to generate the necessary code for the `UIntWrapper` derive.
 ///
 /// Not intended to be implemented by users, nor is it required to be used directly.
-pub trait UIntType {
+pub trait UIntType: private::Sealed {
     /// The underlying integer type for the `PgUint` type.
     type Uint;
 }
