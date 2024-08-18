@@ -1010,15 +1010,13 @@ dependencies = [
  "bigdecimal",
  "serde",
  "sqlx",
- "sqlx-pg-uint-macros 0.1.0",
+ "sqlx-pg-uint-macros 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "thiserror",
 ]
 
 [[package]]
 name = "sqlx-pg-uint-macros"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "915fe701692f60eb72224011b7281cfce14481ba251b10436188d6515e835c41"
+version = "0.2.0"
 dependencies = [
  "quote",
  "syn",
@@ -1027,6 +1025,8 @@ dependencies = [
 [[package]]
 name = "sqlx-pg-uint-macros"
 version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fe4f5704fe7b866782ab87d9fe069c2f02be27b801e990af56a3d94a29290bd8"
 dependencies = [
  "quote",
  "syn",
