@@ -8,6 +8,7 @@ impl UIntType for PgU128 {
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
+/// PostgreSQL-compatible unsigned 128-bit integer
 pub struct PgU128 {
     inner: BigDecimal,
 }

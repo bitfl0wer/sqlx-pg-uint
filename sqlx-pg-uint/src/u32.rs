@@ -8,6 +8,7 @@ impl UIntType for PgU32 {
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
+/// PostgreSQL-compatible unsigned 32-bit integer
 pub struct PgU32 {
     inner: BigDecimal,
 }

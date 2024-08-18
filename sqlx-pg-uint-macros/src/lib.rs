@@ -69,17 +69,20 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
         }
 
         impl #name {
+            /// Converts this type to the associated unsigned integer type
             pub fn to_uint(&self) -> <#name as UIntType>::Uint {
                 let stringed_num = self.inner.to_string();
                 stringed_num.parse().unwrap()
             }
 
+            /// Creates a new instance of this type from the associated unsigned integer type
             pub fn new(num: <#name as UIntType>::Uint) -> Self {
                 Self {
                     inner: BigDecimal::from(num),
                 }
             }
 
+            /// Returns a shared reference to the inner `BigDecimal` value
             pub fn as_big_decimal(&self) -> &BigDecimal {
                 &self.inner
             }
@@ -99,7 +102,6 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
                 Ok(Self { inner: value })
             }
         }
-
 
         impl From<#name> for BigDecimal {
             fn from(value: #name) -> Self {

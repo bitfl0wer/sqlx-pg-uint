@@ -20,6 +20,10 @@ pub enum Error {
     Fractional(BigDecimal),
 }
 
+/// Helper trait to define the underlying integer type for a given `PgUint` type. Used in the
+/// `sqlx-pg-uint-macros` crate to generate the necessary code for the `UIntWrapper` derive.
+///
+/// Not intended to be implemented by users, nor is it required to be used directly.
 pub trait UIntType {
     type Uint;
 }
