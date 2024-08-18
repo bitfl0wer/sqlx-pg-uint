@@ -28,3 +28,15 @@ fn main() {
     println!("If you load a PgUint from a database successfully, you can be sure that it's a valid fixed-size unsigned integer.");
 }
 ```
+
+## serde
+
+This crate also provides serde de-/serialization, if the `serde` feature is enabled.
+
+With the `serde` feature enabled, you can use the `PgUint` types in structs that you want to serialize and deserialize.
+De-/serialization is done using the serde `Serialize` and `Deserialize` implementations from the
+underlying [`BigDecimal`](https://crates.io/crates/bigdecimal) type.
+
+## MSRV
+
+1.74.1

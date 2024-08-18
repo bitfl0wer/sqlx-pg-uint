@@ -51,7 +51,7 @@ pub use u32::*;
 pub use u64::*;
 pub use u8::*;
 
-#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, Error)]
+#[derive(Debug, PartialEq, Clone, Error)]
 /// Error type for conversions between `BigDecimal` and `PgUint` types.
 pub enum Error {
     #[error("Value is either too large, to small or not an integer")]
@@ -60,6 +60,10 @@ pub enum Error {
     #[error("Invalid value for target type")]
     /// Provided value is a floating point number, which is not supported by the target type.
     Fractional(BigDecimal),
+    #[cfg(feature = "serde")]
+    #[error(transparent)]
+    /// Error when deserializing a `BigDecimal` from a `serde` deserializer.
+    Serde(#[from] serde::de::value::Error),
 }
 
 mod private {

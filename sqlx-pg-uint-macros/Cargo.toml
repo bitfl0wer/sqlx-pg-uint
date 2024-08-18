@@ -1,10 +1,11 @@
 [package]
 name = "sqlx-pg-uint-macros"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
 description = "proc-macros for the `sqlx-pg-uint` crate."
+rust-version = "1.61.0"
 
 [lib]
 proc-macro = true

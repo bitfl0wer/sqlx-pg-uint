@@ -1,10 +1,11 @@
 [package]
 name = "sqlx-pg-uint"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
 description = "SQLx compatible types to convert between Rust unsigned integers and the PostgreSQL `NUMERIC`/`DECIMAL` type seamlessly."
+rust-version = "1.74.1"
 
 [dependencies]
 sqlx = { version = "0.8", default-features = false, features = [
@@ -15,3 +16,8 @@ thiserror = "1.0"
 sqlx-pg-uint-macros = { version = "0.1.0" }
 #sqlx-pg-uint-macros = { path = "../sqlx-pg-uint-macros" }
 bigdecimal = "0.4.5"
+serde = { version = "1.0.208", features = ["derive"], optional = true }
+
+[features]
+default = []
+serde = ["dep:serde", "bigdecimal/serde"]

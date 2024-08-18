@@ -138,6 +138,27 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
                 Ok(#name::try_from(big_decimal)?)
             }
         }
+
+        #[cfg(feature = "serde")]
+        impl serde::ser::Serialize for #name {
+            fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+            where
+                S: serde::Serializer,
+            {
+                self.inner.serialize(serializer)
+            }
+        }
+
+        #[cfg(feature = "serde")]
+        impl<'de> serde::de::Deserialize<'de> for #name {
+            fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                let big_decimal = BigDecimal::deserialize(deserializer)?;
+                #name::try_from(big_decimal).map_err(serde::de::Error::custom)
+            }
+        }
     };
 
     gen.into()
