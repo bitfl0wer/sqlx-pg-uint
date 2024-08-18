@@ -13,4 +13,5 @@ sqlx = { version = "0.8", default-features = false, features = [
     "bigdecimal",
 ] }
 thiserror = "1.0"
-sqlx-pg-uint-macros = { version = "*" }
+#sqlx-pg-uint-macros = { version = "*" }
+sqlx-pg-uint-macros = { path = "../sqlx-pg-uint-macros" }
