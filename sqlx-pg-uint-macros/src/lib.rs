@@ -114,6 +114,30 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
                 value.inner
             }
         }
+
+        impl sqlx::Type<sqlx::Postgres> for #name {
+            fn type_info() -> <sqlx::Postgres as sqlx::Database>::TypeInfo {
+                <BigDecimal as sqlx::Type<sqlx::Postgres>>::type_info()
+            }
+        }
+
+        impl<'q> sqlx::Encode<'q, sqlx::Postgres> for #name {
+            fn encode_by_ref(
+                &self,
+                buf: &mut <sqlx::Postgres as sqlx::Database>::ArgumentBuffer<'q>,
+            ) -> Result<sqlx::encode::IsNull, sqlx::error::BoxDynError> {
+                self.inner.encode_by_ref(buf)
+            }
+        }
+
+        impl<'r> sqlx::Decode<'r, sqlx::Postgres> for #name {
+            fn decode(
+                value: <sqlx::Postgres as sqlx::Database>::ValueRef<'r>,
+            ) -> Result<Self, sqlx::error::BoxDynError> {
+                let big_decimal = BigDecimal::decode(value)?;
+                Ok(#name::try_from(big_decimal)?)
+            }
+        }
     };
 
     gen.into()
