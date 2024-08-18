@@ -1004,7 +1004,7 @@ dependencies = [
 
 [[package]]
 name = "sqlx-pg-uint"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "bigdecimal",
  "sqlx",
@@ -1014,7 +1014,7 @@ dependencies = [
 
 [[package]]
 name = "sqlx-pg-uint-macros"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "quote",
  "syn",
