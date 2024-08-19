@@ -60,6 +60,34 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
+        impl std::ops::AddAssign for #name {
+            fn add_assign(&mut self, rhs: Self) {
+                let inner = BigDecimal::from(self.to_uint() + rhs.to_uint());
+                *self = Self { inner };
+            }
+        }
+
+        impl std::ops::SubAssign for #name {
+            fn sub_assign(&mut self, rhs: Self) {
+                let inner = BigDecimal::from(self.to_uint() - rhs.to_uint());
+                *self = Self { inner };
+            }
+        }
+
+        impl std::ops::MulAssign for #name {
+            fn mul_assign(&mut self, rhs: Self) {
+                let inner = BigDecimal::from(self.to_uint() * rhs.to_uint());
+                *self = Self { inner };
+            }
+        }
+
+        impl std::ops::DivAssign for #name {
+            fn div_assign(&mut self, rhs: Self) {
+                let inner = BigDecimal::from(self.to_uint() / rhs.to_uint());
+                *self = Self { inner };
+            }
+        }
+
         impl From<<#name as UIntType>::Uint> for #name {
             fn from(value: <#name as UIntType>::Uint) -> Self {
                 Self {
