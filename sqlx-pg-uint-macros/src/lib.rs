@@ -115,6 +115,12 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
+        impl Default for #name {
+            fn default() -> Self {
+                Self::from(0)
+            }
+        }
+
         impl sqlx::Type<sqlx::Postgres> for #name {
             fn type_info() -> <sqlx::Postgres as sqlx::Database>::TypeInfo {
                 <BigDecimal as sqlx::Type<sqlx::Postgres>>::type_info()
