@@ -11,6 +11,7 @@ rust-version = "1.74.1"
 sqlx = { version = "0.8", default-features = false, features = [
     "postgres",
     "bigdecimal",
+    "derive",
 ] }
 thiserror = "1.0"
 #sqlx-pg-uint-macros = { version = "0.3.0" }
