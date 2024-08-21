@@ -1,6 +1,6 @@
 [package]
 name = "sqlx-pg-uint"
-version = "0.4.0"
+version = "0.4.1"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
@@ -14,7 +14,7 @@ sqlx = { version = "0.8", default-features = false, features = [
     "derive",
 ] }
 thiserror = "1.0"
-sqlx-pg-uint-macros = { version = "0.3.0" }
+sqlx-pg-uint-macros = { version = "0.3.1" }
 #sqlx-pg-uint-macros = { path = "../sqlx-pg-uint-macros" }
 bigdecimal = "0.4.5"
 serde = { version = "1.0.208", features = ["derive"], optional = true }
