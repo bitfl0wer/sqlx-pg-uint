@@ -9,7 +9,7 @@ impl UIntType for PgU8 {
 
 impl private::Sealed for PgU8 {}
 
-#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
+#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper, sqlx::FromRow)]
 /// PostgreSQL-compatible unsigned 8-bit integer
 pub struct PgU8 {
     inner: BigDecimal,

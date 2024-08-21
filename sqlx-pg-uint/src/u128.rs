@@ -9,7 +9,7 @@ impl UIntType for PgU128 {
     type Uint = u128;
 }
 
-#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
+#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper, sqlx::FromRow)]
 /// PostgreSQL-compatible unsigned 128-bit integer
 pub struct PgU128 {
     inner: BigDecimal,

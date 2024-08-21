@@ -9,7 +9,7 @@ impl UIntType for PgU16 {
 
 impl private::Sealed for PgU16 {}
 
-#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper)]
+#[derive(Debug, PartialEq, Eq, Clone, Hash, PartialOrd, Ord, UIntWrapper, sqlx::FromRow)]
 /// PostgreSQL-compatible unsigned 16-bit integer
 pub struct PgU16 {
     inner: BigDecimal,
