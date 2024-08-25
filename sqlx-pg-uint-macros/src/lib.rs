@@ -173,6 +173,12 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
+        impl sqlx::postgres::PgHasArrayType for #name {
+            fn array_type_info() -> sqlx::postgres::PgTypeInfo {
+                <Vec<BigDecimal> as sqlx::Type<sqlx::Postgres>>::type_info()
+            }
+        }
+
         #[cfg(feature = "serde")]
         impl serde::ser::Serialize for #name {
             fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
