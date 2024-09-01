@@ -102,6 +102,15 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
+        impl std::str::FromStr for #name {
+            type Err = Error;
+
+            fn from_str(s: &str) -> Result<Self, Self::Err> {
+                let unsigned_int: <Self as UIntType>::Uint = s.parse()?;
+                Ok(Self::from(unsigned_int))
+            }
+        }
+
         impl #name {
             /// Converts this type to the associated unsigned integer type
             pub fn to_uint(&self) -> <#name as UIntType>::Uint {
