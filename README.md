@@ -29,6 +29,30 @@ fn main() {
 }
 ```
 
+When defining a column for a PostgreSQL table, which should store a fixed-size unsigned integer,
+you should use the `NUMERIC` type.
+
+| Rust Type | PostgreSQL Type  |
+| --------- | ---------------- |
+| `PgU8`    | `NUMERIC(3, 0)`  |
+| `PgU16`   | `NUMERIC(5, 0)`  |
+| `PgU32`   | `NUMERIC(10, 0)` |
+| `PgU64`   | `NUMERIC(20, 0)` |
+| `PgU128`  | `NUMERIC(39, 0)` |
+
+Additionally, you are advised to use `constraints` to ensure that the value stored in the column is
+a valid fixed-size unsigned integer, guaranteed to be in range for the type.
+
+```sql
+CREATE TABLE my_table (
+    -- `id` is an unsigned 64-bit integer in the corresponding Rust struct
+    id numeric(20, 0) not null constraint chk_id_range check (id >= 0 AND id <= 18446744073709551615),
+);
+```
+
+> Constraining columns (or Rust types) to only store valid values is not a recommendation specific to
+> this crate, but a general best practice to avoid faulty states in your application.
+
 ## serde
 
 This crate also provides serde de-/serialization, if the `serde` feature is enabled.
