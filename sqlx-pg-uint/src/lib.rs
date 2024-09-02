@@ -65,6 +65,7 @@ pub enum Error {
     /// Error when deserializing a `BigDecimal` from a `serde` deserializer.
     Serde(#[from] serde::de::value::Error),
     #[error(transparent)]
+    /// Error when parsing a `BigDecimal` from a string.
     ParseInt(#[from] std::num::ParseIntError),
 }
 
