@@ -58,8 +58,8 @@ CREATE TABLE my_table (
 This crate also provides serde de-/serialization, if the `serde` feature is enabled.
 
 With the `serde` feature enabled, you can use the `PgUint` types in structs that you want to serialize and deserialize.
-De-/serialization is done using the serde `Serialize` and `Deserialize` implementations from the
-underlying [`BigDecimal`](https://crates.io/crates/bigdecimal) type.
+
+Types are serialized as their respective unsigned integer values, and deserialized using the underlying `Deserialize` trait implemented for `BigDecimal`.
 
 ## MSRV
 
