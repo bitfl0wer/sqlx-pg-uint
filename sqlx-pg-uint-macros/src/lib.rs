@@ -194,7 +194,7 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             where
                 S: serde::Serializer,
             {
-                self.inner.serialize(serializer)
+                self.to_uint().serialize(serializer)
             }
         }
 
