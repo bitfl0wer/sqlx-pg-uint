@@ -10,7 +10,7 @@ readme = "../README.md"
 rust-version = "1.74.1"
 
 [dependencies]
-sqlx = { version = "0.8", default-features = false, features = [
+sqlx = { version = "0.8.2", default-features = false, features = [
     "postgres",
     "bigdecimal",
     "derive",
