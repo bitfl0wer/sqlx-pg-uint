@@ -15,10 +15,10 @@ sqlx = { version = "0.8.2", default-features = false, features = [
     "bigdecimal",
     "derive",
 ] }
-thiserror = "1.0"
+thiserror = "1.0.64"
 sqlx-pg-uint-macros = { version = "0", path = "../sqlx-pg-uint-macros" }
 bigdecimal = "0.4.5"
-serde = { version = "1.0.208", features = ["derive"], optional = true }
+serde = { version = "1.0.210", features = ["derive"], optional = true }
 
 [dev-dependencies]
 serde_test = "1.0.177"
