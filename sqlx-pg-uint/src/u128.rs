@@ -15,6 +15,20 @@ pub struct PgU128 {
     inner: BigDecimal,
 }
 
+impl From<PgU128> for u128 {
+    fn from(value: PgU128) -> Self {
+        value.inner.to_string().parse().unwrap()
+    }
+}
+
+impl From<u128> for PgU128 {
+    fn from(value: u128) -> Self {
+        Self {
+            inner: BigDecimal::from(value),
+        }
+    }
+}
+
 #[cfg(test)]
 mod pg_u128_tests {
     use bigdecimal::num_bigint::BigInt;
