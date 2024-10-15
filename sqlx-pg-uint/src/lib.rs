@@ -43,6 +43,9 @@ mod u32;
 mod u64;
 mod u8;
 
+use std::fmt::Display;
+use std::str::FromStr;
+
 pub(crate) use bigdecimal::BigDecimal;
 use thiserror::Error;
 pub use u128::*;
@@ -73,11 +76,17 @@ mod private {
     pub trait Sealed {}
 }
 
+impl private::Sealed for u8 {}
+impl private::Sealed for u16 {}
+impl private::Sealed for u32 {}
+impl private::Sealed for u64 {}
+impl private::Sealed for u128 {}
+
 /// Helper trait to define the underlying integer type for a given `PgUint` type. Used in the
 /// `sqlx-pg-uint-macros` crate to generate the necessary code for the `UIntWrapper` derive.
 ///
 /// Not intended to be implemented by users, nor is it required to be used directly.
-pub trait UIntType: private::Sealed {
+pub trait UIntType: private::Sealed + Display {
     /// The underlying integer type for the `PgUint` type.
-    type Uint;
+    type Uint: private::Sealed + FromStr;
 }
