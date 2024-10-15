@@ -88,23 +88,6 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             }
         }
 
-        impl From<<#name as UIntType>::Uint> for #name {
-            fn from(value: <#name as UIntType>::Uint) -> Self {
-                Self {
-                    inner: BigDecimal::from(value),
-                }
-            }
-        }
-
-        // TODO: This trait bound must be tightened as far as possible. This blanket implementation
-        // conflicts with other blanket implementations.
-
-        impl From<#name> for <#name as UIntType>::Uint {
-            fn from(value: #name) -> Self {
-                value.to_uint()
-            }
-        }
-
         impl std::str::FromStr for #name {
             type Err = Error;
 
