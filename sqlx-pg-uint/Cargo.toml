@@ -1,6 +1,6 @@
 [package]
 name = "sqlx-pg-uint"
-version = "0.8.0"
+version = "0.8.1"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
@@ -10,15 +10,15 @@ readme = "../README.md"
 rust-version = "1.74.1"
 
 [dependencies]
-sqlx = { version = "0.8.2", default-features = false, features = [
+sqlx = { version = "^0.8", default-features = false, features = [
     "postgres",
     "bigdecimal",
     "derive",
 ] }
-thiserror = "1.0.64"
+thiserror = "1.0.69"
 sqlx-pg-uint-macros = { version = "0", path = "../sqlx-pg-uint-macros" }
-bigdecimal = "0.4.5"
-serde = { version = "1.0.210", features = ["derive"], optional = true }
+bigdecimal = "0.4.7"
+serde = { version = "1.0.217", features = ["derive"], optional = true }
 
 [dev-dependencies]
 serde_test = "1.0.177"
