@@ -647,9 +647,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.37"
+version = "1.0.38"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5b9d34b8991d19d98081b46eacdd8eb58c6f2b201139f7c5f643cc155a633af"
+checksum = "0e4dccaaaf89514f546c693ddc140f729f958c247918a13380cccc6078391acc"
 dependencies = [
  "proc-macro2",
 ]
@@ -971,7 +971,7 @@ dependencies = [
 
 [[package]]
 name = "sqlx-pg-uint"
-version = "0.8.1"
+version = "0.9.0"
 dependencies = [
  "bigdecimal",
  "serde",
@@ -983,7 +983,7 @@ dependencies = [
 
 [[package]]
 name = "sqlx-pg-uint-macros"
-version = "0.7.0"
+version = "0.8.0"
 dependencies = [
  "quote",
  "syn",
@@ -1170,9 +1170,9 @@ checksum = "08f95100a766bf4f8f28f90d77e0a5461bbdb219042e7679bebe79004fed8d75"
 
 [[package]]
 name = "unicode-ident"
-version = "1.0.13"
+version = "1.0.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e91b56cd4cadaeb79bbf1a5645f6b4f8dc5bde8834ad5894a8db35fda9efa1fe"
+checksum = "a210d160f08b701c8721ba1c726c11662f877ea6b7094007e1ca9a1041945034"
 
 [[package]]
 name = "unicode-normalization"
