@@ -155,7 +155,7 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
                 &self,
                 buf: &mut <sqlx::Postgres as sqlx::Database>::ArgumentBuffer<'q>,
             ) -> Result<sqlx::encode::IsNull, sqlx::error::BoxDynError> {
-                self.inner.encode_by_ref(buf)
+                <BigDecimal as sqlx::Encode<sqlx::Postgres>>::encode_by_ref(&self.inner, buf)
             }
         }
 
@@ -163,7 +163,8 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             fn decode(
                 value: <sqlx::Postgres as sqlx::Database>::ValueRef<'r>,
             ) -> Result<Self, sqlx::error::BoxDynError> {
-                let big_decimal = BigDecimal::decode(value)?;
+                let big_decimal = <BigDecimal as sqlx::Decode<sqlx::Postgres>>::decode(value)
+                ?;
                 Ok(#name::try_from(big_decimal)?)
             }
         }
