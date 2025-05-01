@@ -96,4 +96,19 @@ mod pg_u128_tests {
         let pg_u128 = PgU128::try_from(big_decimal.clone());
         assert_eq!(pg_u128.unwrap_err(), Error::InvalidValue(big_decimal));
     }
+
+    #[test]
+    fn test_option_conversion() {
+        let somepguint = Some(PgU128::from(123u128));
+        let someuint = somepguint.to_option_uint();
+        assert_eq!(someuint, Some(123u128));
+
+        let pguint = PgU128::from(123);
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, Some(123u128));
+
+        let pguint: Option<PgU128> = None;
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, None::<u128>);
+    }
 }

@@ -90,3 +90,8 @@ pub trait UIntType: private::Sealed + Display {
     /// The underlying integer type for the `PgUint` type.
     type Uint: private::Sealed + FromStr;
 }
+
+pub(crate) trait OptionPgUint<T: UIntType> {
+    /// Convert any `Option<PgUint>` to an `Option<[underlying integer type]>`
+    fn to_option_uint(&self) -> Option<T::Uint>;
+}

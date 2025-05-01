@@ -1,13 +1,13 @@
 [package]
 name = "sqlx-pg-uint"
-version = "0.9.0"
+version = "0.10.0"
 edition = "2021"
 license = "MIT"
 authors = ["bitfl0wer"]
 description = "SQLx compatible types to convert between Rust unsigned integers and the PostgreSQL `NUMERIC`/`DECIMAL` type seamlessly."
 repository = "https://github.com/bitfl0wer/sqlx-pg-uint"
 readme = "../README.md"
-rust-version = "1.74.1"
+rust-version = "1.81.0"
 
 [dependencies]
 sqlx = { version = "^0.8", default-features = false, features = [

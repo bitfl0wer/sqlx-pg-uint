@@ -24,6 +24,10 @@ fn main() {
         "Interact with the underlying BigDecimal type directly: {}",
         pg_u_64.as_big_decimal()
     );
+    println!("You can also convert an Option<PgUInt> to a Option<uint> easily.")
+    let somepguint: Option<PgU32> = Some(PgU32::from(123u32));
+    let someuint: Option<u32> = somepguint.to_option_uint();
+    assert_eq!(someuint, Some(123u32));
     println!("PgUint types can be converted to and from BigDecimals, and are storable in an sqlx::Postgres database.");
     println!("If you load a PgUint from a database successfully, you can be sure that it's a valid fixed-size unsigned integer.");
 }

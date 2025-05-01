@@ -95,4 +95,19 @@ mod pg_u64_tests {
         let pg_u64 = PgU64::try_from(big_decimal.clone());
         assert_eq!(pg_u64.unwrap_err(), Error::InvalidValue(big_decimal));
     }
+
+    #[test]
+    fn test_option_conversion() {
+        let somepguint = Some(PgU64::from(123u64));
+        let someuint = somepguint.to_option_uint();
+        assert_eq!(someuint, Some(123u64));
+
+        let pguint = PgU64::from(123);
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, Some(123u64));
+
+        let pguint: Option<PgU64> = None;
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, None::<u64>);
+    }
 }

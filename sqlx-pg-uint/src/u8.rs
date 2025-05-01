@@ -96,4 +96,19 @@ mod pg_u8_tests {
         let pg_u8 = PgU8::try_from(big_decimal.clone());
         assert_eq!(pg_u8.unwrap_err(), Error::InvalidValue(big_decimal));
     }
+
+    #[test]
+    fn test_option_conversion() {
+        let somepguint = Some(PgU8::from(123u8));
+        let someuint = somepguint.to_option_uint();
+        assert_eq!(someuint, Some(123u8));
+
+        let pguint = PgU8::from(123);
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, Some(123u8));
+
+        let pguint: Option<PgU8> = None;
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, None::<u8>);
+    }
 }

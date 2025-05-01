@@ -96,4 +96,19 @@ mod pg_u16_tests {
         let pg_u16 = PgU16::try_from(big_decimal.clone());
         assert_eq!(pg_u16.unwrap_err(), Error::InvalidValue(big_decimal));
     }
+
+    #[test]
+    fn test_option_conversion() {
+        let somepguint = Some(PgU16::from(123u16));
+        let someuint = somepguint.to_option_uint();
+        assert_eq!(someuint, Some(123u16));
+
+        let pguint = PgU16::from(123);
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, Some(123u16));
+
+        let pguint: Option<PgU16> = None;
+        let someuint = pguint.to_option_uint();
+        assert_eq!(someuint, None::<u16>);
+    }
 }

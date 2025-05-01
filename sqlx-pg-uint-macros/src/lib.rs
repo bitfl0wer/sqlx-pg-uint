@@ -104,6 +104,11 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
                 stringed_num.parse().unwrap()
             }
 
+            /// Converts `Option<PgUint>` to `Option<[underlying integer type]>`.
+            pub fn to_option_uint(&self) -> Option<<#name as UIntType>::Uint> {
+                <Option<#name> as OptionPgUint<#name>>::to_option_uint(&Some(self.clone()))
+            }
+
             /// Creates a new instance of this type from the associated unsigned integer type
             pub fn new(num: <#name as UIntType>::Uint) -> Self {
                 Self {
@@ -114,6 +119,12 @@ pub fn uint_wrapper_derive(input: TokenStream) -> TokenStream {
             /// Returns a shared reference to the inner `BigDecimal` value
             pub fn as_big_decimal(&self) -> &BigDecimal {
                 &self.inner
+            }
+        }
+
+        impl OptionPgUint<#name> for Option<#name> where #name: UIntType {
+            fn to_option_uint(&self) -> Option<<#name as UIntType>::Uint> {
+                self.clone().map(|v| v.to_uint())
             }
         }
 
