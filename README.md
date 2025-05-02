@@ -67,4 +67,4 @@ Types are serialized as their respective unsigned integer values, and deserializ
 
 ## MSRV
 
-1.74.1
+1.81.0
